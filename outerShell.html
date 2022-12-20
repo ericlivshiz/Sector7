@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="outerShell.css" />
+    <title></title>
+    <style>
+        #wheelSpinner {
+            border: #FFFFFF 3px solid;
+            width: 14%;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            right: -10%;
+            top: 190px;
+        }
+
+        #spinnerFrame {
+            position: absolute;
+            overflow: hidden;
+            -webkit-transform: scale(0.55);
+            left: -52.5%;
+            top: -94%;
+            height: 900px;
+        }
+
+        #diceRoll {
+            border: #FFFFFF 3px solid;
+            width: 14.4%;
+            height: 345px;
+            overflow: hidden;
+            position: relative;
+            right: -24%;
+            top: -165px;
+        }
+
+        #diceFrame {
+            position: absolute;
+            left: -30%;
+            top: -245px;
+            width: 450px;
+            height: 700px;
+            overflow: hidden;
+        }
+
+        #boardMap {
+            border: #FFFFFF 3px solid;
+            width: 42%;
+            height: 800px;
+            overflow: hidden;
+            position: relative;
+            right: -50%;
+            top: -710px;
+        }
+
+        #mapFrame {
+            position: absolute;
+            width: 100%;
+            top: -10px;
+            left: -2px;
+            height: 950px;
+            overflow: hidden;
+        }
+
+        #Cards {
+            border: #FFFFFF 3px solid;
+            position: relative;
+            overflow: hidden;
+            top: -975px;
+            width: 28.4%;
+            height: 200px;
+            right: -10%;
+        }
+
+
+        #cardFrame {
+            width: 150%;
+            height: 150%;
+            position: absolute;
+            top: -50px;
+            left: -125px;
+            -webkit-transform: scale(0.7);
+            overflow-y: hidden;
+        }
+
+        body {
+            background-image: url(images/starryspaceworange.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .container {
+            height: 200px;
+            position: relative;
+            border: 3px solid green;
+        }
+<!--
+        .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }-->
+        .button {
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .button1 {
+            background-color: red;
+        }
+
+        .button2 {
+            background-color: orange;
+        }
+
+        .button3 {
+            background-color: yellow;
+        }
+
+        .button4 {
+            background-color: green;
+        }
+
+        .button5 {
+            background-color: blue;
+        }
+
+
+        .button6 {
+            background-color: purple;
+        }
+
+        .buttonHolder {
+            padding-top: 100px;
+        }
+
+        .easyMode {
+            background-color: #004d00;
+            font-size: 22px;
+            font-family: 'Comic Sans MS'
+        }
+
+        .normalMode {
+            background-color: #e6e600;
+            font-size: 22px;
+            font-family: 'Comic Sans MS'
+        }
+
+        .hardMode {
+            background-color: #800000;
+            font-size: 22px;
+            font-family: 'Comic Sans MS'
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="images/TRE.png" alt="logo" />
+        <div class="inner_header">
+            <div class="logo_container">
+                <h1>Sector<span>7</span></h1>
+            </div>
+            <ul class="companyTag">
+                <a>
+                <li>Tropical Rain Entertainment</li></a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="game-mode">
+        <h1>Game <span>Mode</span></h1>
+        <div class="mode-types">
+            <button class="easyMode" id="easy">Easy Mode</button>
+            <button class="normalMode" id="normal">Normal Mode</button>
+            <button class="hardMode" id="hard">Hard mode</button>
+        </div>
+    </div>
+
+
+    <div id="wheelSpinner">
+        <iframe src="wheelSpinner.html" id="spinnerFrame" frameborder="0" width="550" height="575"></iframe>
+    </div>
+    <div id="diceRoll">
+        <iframe src="diceRoll.html" id="diceFrame" width="400" height="400"></iframe> -->
+    </div>
+    <div id="boardMap">
+        <iframe src="boardMap.html" id="mapFrame" width="1050" height="900"></iframe>
+    </div>
+    <div id="Cards">
+         <iframe src="Cards.html" id="cardFrame"></iframe>
+    </div>
+   <!-- <div class="button_container">
+        <div class="vertical-center">
+            <button onclick="displayIframe()" id="cardButton">CardButton</button>
+        </div>
+    </div>-->
+
+    <div class="bg-modal" id="chooseColorWindow">
+        <div class="chooseColorPrompt">
+            Please choose the color of your character:
+            <div class="buttonHolder">
+                <button class="button button1" id="RB"></button>
+                <button class="button button2" id="OB"></button>
+                <button class="button button3" id="YB"></button>
+                <button class="button button4" id="GB"></button>
+                <button class="button button5" id="BB"></button>
+                <button class="button button6" id="PB"></button>
+            </div>
+
+
+            <!--<form>
+                <input name="redCircle" type="image" src="images/redCircleFinal.png" height="50" width="50" />
+                <input name="orangeCircle" type="image" src="images/orangeCircleFinal.png" height="50" width="50" />
+                <input name="yellowCircle" type="image" src="images/yellowCircleFinal.png" height="50" width="50" />
+                <input name="greenCircle" type="image" src="images/greenCircleFinal.png" height="50" width="50" />
+                <input name="blueCircle" type="image" src="images/blueCircleFinal.png" height="50" width="50" />
+                <input name="purpleCircle" type="image" src="images/purpleCircleFinal.png" height="50" width="50" />
+            </form>-->
+        </div>
+    </div>
+
+    <script type="module" src="tileMap.js" defer></script>
+    <script type="module" src="Game.js"></script>
+    <script>
+        function displayIframe() {
+            document.getElementById("Cards").innerHTML = "<iframe src=\"../Cards.html\" height=\"400\" width=\"400\" id=\"cardFrame\"></iframe>";
+
+        }
+
+        document.querySelector('.bg-modal').style.display = 'none';
+       
+    </script>
+
+
+
+
+</body>
+</html>

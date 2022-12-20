@@ -1,0 +1,28 @@
+body {
+    background-color: black;
+}
+
+.column {
+    float: left;
+    width: 15%;
+    padding: 5px;
+    top: 5%;
+    /*visibility: hidden;*/
+}
+
+.cards:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.column2 {
+    float: left;
+    width: 15%;
+    position: relative;
+    top: -100px;
+    left: -30px;
+    padding: 5px;
+    /*visibility: hidden;*/
+    -webkit-transform: scale(0.3);
+}

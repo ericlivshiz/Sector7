@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="OuterShell2.css" />
+    <title></title>
+    <style>
+       
+        body {
+            background-image: url(images/starryspaceworange.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+    </style>
+
+    </head>
+    
+<body>
+
+    <div class="header">
+        <img src="images/TRE.png" alt="logo" />
+        <div class="inner_header">
+            <div class="logo_container">
+                <h1>Sector<span>7</span></h1>
+            </div>
+            <div class="companyTag">
+                
+                <a><h4>Tropical Rain Entertainment</h4></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="UI">
+        <div class="game_modes">
+            <h1>Game<span>Modes</span></h1>
+            <div class="mode-types">
+                <button class="easyMode" id="easy">Easy Mode</button>
+                <button class="normalMode" id="normal">Normal Mode</button>
+                <button class="hardMode" id="hard">Hard mode</button>
+            </div>
+
+        </div>
+        <div class="movement_options">
+            <div class="wheel_spinner">
+                <iframe src="wheelSpinner.html" id="spinnerFrame"></iframe>
+            </div>
+            <div class="dice_roll">
+                <iframe src="diceRoll.html" id="rollFrame"></iframe>
+            </div>
+        </div>
+        <div class="cards">
+            <iframe src="Cards1.2.html" id="cardFrame"></iframe>
+        </div>
+    </div>
+
+    <div class="game_board" id="gameBoard">
+        <iframe src="boardMap.html" id="mapFrame"></iframe>
+    </div>
+
+    <script type="module" src="tileMap.js" defer></script>
+    <script type="module" src="Game.js"></script>
+
+</body>
+</html>
