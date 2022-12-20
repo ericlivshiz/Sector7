@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="wheelSpinner.css">
+    <title> Sector 7 </title>
+    <style>
+        h1 {
+            font-family: 'Comic Sans MS';
+            text-align: center;
+            color: lightgray;
+        }
+
+        #game {
+            box-shadow: 10px 10px 15px black;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            /* background: linear-gradient( 0deg, rgb(112, 74, 74) 0%, rgb(36, 129, 117) 50% )
+        */
+            /*  background-image: url(images/starryspaceworange.jpg); */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+
+    
+
+</head>
+
+<body>
+    <div id="wheelSpinner"></div>
+    <div class="wheelBorder">
+        <div class="container">
+            <div class="one">KEY</div>
+            <div class="two"></div>
+            <div class="three"></div>
+            <div class="four"></div>
+            <div class="five"></div>
+            <div class="six"></div>
+            <div class="seven"> Choose Color</div>
+            <div class="eight"></div>
+        </div>
+    </div>
+    <span class="mid-item"></span>
+    <button id="spin">SPIN</button>
+    <div class="stopper"></div>
+
+    <script src='spinner.js' type="module"></script>
+    
+</body>
+</html>
