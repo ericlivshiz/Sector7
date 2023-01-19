@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="OuterShell2.css" />
     <title></title>
     <style>
-       
+
         body {
             background-image: url(images/starryspaceworange.jpg);
             background-repeat: no-repeat;
@@ -18,8 +18,8 @@
         }
     </style>
 
-    </head>
-    
+</head>
+
 <body>
 
     <div class="header">
@@ -29,7 +29,7 @@
                 <h1>Sector<span>7</span></h1>
             </div>
             <div class="companyTag">
-                
+
                 <a><h4>Tropical Rain Entertainment</h4></a>
             </div>
         </div>
@@ -56,14 +56,34 @@
         <div class="cards">
             <iframe src="Cards1.2.html" id="cardFrame"></iframe>
         </div>
+        <button class="riskIt" id="riskItButton">Risk It for the Biscuit!</button>
     </div>
 
     <div class="game_board" id="gameBoard">
         <iframe src="boardMap.html" id="mapFrame"></iframe>
     </div>
 
+    <div class="bg-modal" id="chooseColorWindow">
+        <div class="chooseColorPrompt">
+            Please choose the color of your character:
+            <div class="buttonHolder">
+                <button class="button button1" id="RB"></button>
+                <button class="button button2" id="OB"></button>
+                <button class="button button3" id="YB"></button>
+                <button class="button button4" id="GB"></button>
+                <button class="button button5" id="BB"></button>
+                <button class="button button6" id="PB"></button>
+            </div>
+        </div>
+    </div>
+
+
     <script type="module" src="tileMap.js" defer></script>
     <script type="module" src="Game.js"></script>
+
+    <script>
+        document.querySelector('.bg-modal').style.display = 'none';
+    </script>
 
 </body>
 </html>

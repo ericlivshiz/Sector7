@@ -65,15 +65,15 @@ export default class Tile {
     }
 
     isStart() {
-        return (this.typeOffset == 2) ;
+        return (this.typeOffset == 2);
     }
 
     isColor() {
-        return (this.typeOffset == 1) ;
+        return (this.typeOffset == 1);
     }
 
     isWhite() {
-        return (this.typeOffset == 0) ;
+        return (this.typeOffset == 0);
     }
 
 
@@ -84,7 +84,7 @@ export default class Tile {
     getRowOffset() {
         return this.row;
     }
-    
+
     getId() {
         return this.id;
     }

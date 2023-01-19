@@ -1,4 +1,3 @@
-
 /**
  * Initializes all colors and images used in the game
  * Every color mapped to the images related to this color
@@ -10,12 +9,12 @@
  */
 export default class ColorImages {
     static colors = [];
-    constructor(color, 
-        tileImage, 
-        offset, 
+    constructor(color,
+        tileImage,
+        offset,
         spinnerRotation,
-        startImage, 
-        keyImage, 
+        startImage,
+        keyImage,
         playerImage) {
 
         this.color = color;
@@ -45,7 +44,7 @@ export default class ColorImages {
             selectedColor.startImage,
             selectedColor.keyImage,
             (color.playerImage) ? color.playerImage : selectedColor.playerImage
-            );
+        );
     }
 
     static getColor(offset) {
@@ -68,77 +67,77 @@ export default class ColorImages {
             return gameColors;
         }
         ColorImages.RED = new ColorImages(
-                "RED", 
-                ColorImages.#image("redSquare.jpg"), 
-                0, 
-                765, 
-                ColorImages.#image("rsbigstar.jpg"), 
-                ColorImages.#image("redkey2.jpg"), 
-                ColorImages.#image("redAstroFinal.png"));
-        
+            "RED",
+            ColorImages.#image("redSquare.jpg"),
+            0,
+            765,
+            ColorImages.#image("rsbigstar.jpg"),
+            ColorImages.#image("redkey2.jpg"),
+            ColorImages.#image("redAstroFinal.png"));
+
         ColorImages.ORANGE = new ColorImages(
-                    "ORANGE", 
-                    ColorImages.#image("orangeSquare.jpg"), 
-                    1, 
-                    1035, 
-                    ColorImages.#image("orbigstar.png"), 
-                    ColorImages.#image("ok.jpg"), 
-                    ColorImages.#image("orangeAstro.png"));
-        
+            "ORANGE",
+            ColorImages.#image("orangeSquare.jpg"),
+            1,
+            1035,
+            ColorImages.#image("orbigstar.png"),
+            ColorImages.#image("ok.jpg"),
+            ColorImages.#image("orangeAstro.png"));
+
         ColorImages.YELLOW = new ColorImages(
-                    "YELLOW", 
-                    ColorImages.#image("yellowSquare.jpg"), 
-                    2, 
-                    990, 
-                    ColorImages.#image("ybigstar.jpg"), 
-                    ColorImages.#image("yk.jpg"), 
-                    ColorImages.#image("yellowAstro.png"));
-                    
+            "YELLOW",
+            ColorImages.#image("yellowSquare.jpg"),
+            2,
+            990,
+            ColorImages.#image("ybigstar.jpg"),
+            ColorImages.#image("yk.jpg"),
+            ColorImages.#image("yellowAstro.png"));
+
         ColorImages.GREEN = new ColorImages(
-                    "GREEN", 
-                    ColorImages.#image("greenSquare.jpg"), 
-                    3, 
-                    950, 
-                    ColorImages.#image("greenStar.png"), 
-                    ColorImages.#image("gk.jpg"), 
-                    ColorImages.#image("greenAstro.png"));
-        
+            "GREEN",
+            ColorImages.#image("greenSquare.jpg"),
+            3,
+            950,
+            ColorImages.#image("greenStar.png"),
+            ColorImages.#image("gk.jpg"),
+            ColorImages.#image("greenAstro.png"));
+
         ColorImages.BLUE = new ColorImages(
-                    "BLUE", 
-                    ColorImages.#image("blueSquare.jpg"), 
-                    4, 
-                    910, 
-                    ColorImages.#image("blueStar.png"), 
-                    ColorImages.#image("bk.jpg"), 
-                    ColorImages.#image("blueAstro.png"));
-        
+            "BLUE",
+            ColorImages.#image("blueSquare.jpg"),
+            4,
+            910,
+            ColorImages.#image("blueStar.png"),
+            ColorImages.#image("bk.jpg"),
+            ColorImages.#image("blueAstro.png"));
+
         ColorImages.PURPLE = new ColorImages(
-                    "PURPLE", 
-                    ColorImages.#image("purpleSquare.jpg"), 
-                    5, 
-                    865, 
-                    ColorImages.#image("purpleStar.png"), 
-                    ColorImages.#image("pk.jpg"), 
-                    ColorImages.#image("purpleAstro.png"));
-        
+            "PURPLE",
+            ColorImages.#image("purpleSquare.jpg"),
+            5,
+            865,
+            ColorImages.#image("purpleStar.png"),
+            ColorImages.#image("pk.jpg"),
+            ColorImages.#image("purpleAstro.png"));
+
         ColorImages.RAINBOW = new ColorImages(
-                    "RAINBOW", 
-                    null, 
-                    6, 
-                    820, 
-                    null, 
-                    null, 
-                    ColorImages.#image("rainbowAstro.png"));
-        
-        ColorImages.UNKNOWN = new ColorImages(
-                    "UNKNOWN", 
-                    null, 
-                    7, 
-                    1080, 
-                    null, 
-                    null, 
-                    null);
-        
+            "RAINBOW",
+            null,
+            6,
+            820,
+            null,
+            null,
+            ColorImages.#image("rainbowAstro.png"));
+
+        ColorImages.KEY = new ColorImages(
+            "KEY",
+            null,
+            7,
+            1080,
+            null,
+            null,
+            null);
+
         ColorImages.borderImage = ColorImages.#image("intergalactic.jpeg");
         ColorImages.whiteImage = ColorImages.#image("whiteSquare.jpg");
         ColorImages.s7Image = ColorImages.#image("S7.png");
@@ -152,21 +151,20 @@ export default class ColorImages {
             ColorImages.BLUE,
             ColorImages.PURPLE,
             ColorImages.RAINBOW,
-            ColorImages.UNKNOWN
+            ColorImages.KEY
         ];
 
         console.log("Colors & Images initiated:", ColorImages.colors);
         window.top.gameColors = this;
         return this;
     }
-        
+
     static #image(fileName) {
         const img = new Image();
         img.src = `images/${fileName}`;
         return img;
     }
 }
-    
 
 
 

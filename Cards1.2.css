@@ -3,47 +3,48 @@ body {
     -webkit-transform: scale(1)
 }
 
-.cards{
-    -webkit-transform:scale(0.7);
+.cards {
+    -webkit-transform: scale(0.7);
     display: flex;
     justify-content: center;
 }
 
-.column{
+.column {
     padding: 3%;
     visibility: hidden;
 }
-.cardAmount{
-    -webkit-transform:scale(0.65);
+
+.cardAmount {
+    -webkit-transform: scale(0.65);
     display: flex;
     justify-content: center;
-  
 }
 
-.cardAmountWrapper{
+.cardAmountWrapper {
     position: absolute;
     width: 100%;
     top: 60%;
 }
-.column2{
+
+.column2 {
     padding: 8%;
     visibility: hidden;
 }
 
-#RED{
-    -webkit-transform:scale(0.97);
+#RED {
+    -webkit-transform: scale(0.97);
 }
 
-#ORANGE{
+#ORANGE {
     -webkit-transform: scaleY(0.97);
 }
 
-@media(max-width: 1300px)
-{
-    .cards{
+@media(max-width: 1300px) {
+    .cards {
         -webkit-transform: scale(0.3);
     }
-    .cardAmount{
+
+    .cardAmount {
         -webkit-transform: scale(0.5);
     }
 }
@@ -52,7 +53,7 @@ body {
     float: left;
     width: 15%;
     padding: 5px;*/
-    /*visibility: hidden;*/
+/*visibility: hidden;*/
 /*}
 
 .cards:after {
@@ -70,4 +71,3 @@ body {
     padding: 5px;
     visibility: hidden;
 }*/
-

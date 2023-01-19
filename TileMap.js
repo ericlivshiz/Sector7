@@ -1,6 +1,7 @@
 import Player from './Player.js';
 import Tile from './Tile.js';
 import ColorImages from './ColorImages.js';
+import Game from './Game.js';
 
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
@@ -11,10 +12,11 @@ export default class TileMap {
         this.tileSizeH;
         this.board = new Board();
         this.#initBoard();
-        this.player = null;  
+        this.player = null;
+        this.cpuPlayer = null;
     }
 
-   #initBoard() {
+    #initBoard() {
         this.board.addRow()
             .addBorderTiles(1)
             .addKeyTile(ColorImages.RED)
@@ -169,15 +171,15 @@ export default class TileMap {
             .addWhiteTile()
             .addBorderTiles(1)
 
-       this.board.addRow()
-           .addBorderAround(ColorImages.YELLOW)
-           .addWhiteTiles(4)
-           .addReverseOrder(ColorImages.YELLOW, ColorImages.ORANGE)
-           .addWhiteTile()
-           .addColorTile(ColorImages.PURPLE)
-           .addWhiteTiles(4)
-           .addBorderAround(ColorImages.PURPLE);
-        
+        this.board.addRow()
+            .addBorderAround(ColorImages.YELLOW)
+            .addWhiteTiles(4)
+            .addReverseOrder(ColorImages.YELLOW, ColorImages.ORANGE)
+            .addWhiteTile()
+            .addColorTile(ColorImages.PURPLE)
+            .addWhiteTiles(4)
+            .addBorderAround(ColorImages.PURPLE);
+
         this.board.addRow()
             .addBorderWithWhite()
             .addColorTile(ColorImages.BLUE)
@@ -188,7 +190,7 @@ export default class TileMap {
             .addBorderAround(ColorImages.ORANGE)
             .addColorTile(ColorImages.BLUE)
             .addBorderWithWhite()
-        
+
         this.board.addRow()
             .addBorderAround(ColorImages.ORANGE)
             .addWhiteTiles(3)
@@ -197,7 +199,7 @@ export default class TileMap {
             .addReverseOrder(ColorImages.PURPLE, ColorImages.YELLOW)
             .addWhiteTiles(3)
             .addBorderAround(ColorImages.RED);
-            
+
         this.board.addRow()
             .addBorderWithWhite()
             .addColorTile(ColorImages.GREEN)
@@ -207,7 +209,7 @@ export default class TileMap {
             .addBorderAround(ColorImages.PURPLE)
             .addWhiteTile()
             .addBorderTiles(1);
-            
+
         this.board.addRow()
             .addBorderAround(ColorImages.RED)
             .addWhiteTiles(2)
@@ -255,7 +257,7 @@ export default class TileMap {
         console.log("Starting tile for color:", color);
         return this.#getTile(1, color.offset * 2 + 1);
     }
-   
+
     draw(canvas) {
         this.#setCanvasSize(canvas);
         // this.#clearCanvas(canvas, ctx);
@@ -268,20 +270,28 @@ export default class TileMap {
         var tile = this.#getStartingTile(color);
         this.player.setCurrentTile(tile);
         this.#drawTileImage(canvas, this.player.getImage(), tile);
-        
+
+    }
+
+    addCPUPlayer(cpuPlayer, cpuColor, canvas) {
+        console.log("Put cpu player to color: ", cpuColor);
+        this.cpuPlayer = cpuPlayer;
+        var tile = this.#getStartingTile(cpuColor);
+        this.cpuPlayer.setCurrentTile(tile);
+        this.#drawTileImage(canvas, this.cpuPlayer.getImage(), tile);
     }
 
     async movePlayerDice(steps, canvas, callback) {
         console.log("Moving player for steps: ", steps);
         for (let step = 0; step < steps; step++) {
-            let nextTile = 
-                this.board.getNextPosition(this.player.getCurrentTile(), 
-                this.player.isGoingBack(), this.player);
+            let nextTile =
+                this.board.getNextPosition(this.player.getCurrentTile(),
+                    this.player.isGoingBack(), this.player);
             console.log("Next tile for dice step: ", nextTile);
             //remove player image from the previous tile
             var currentTile = this.player.getCurrentTile();
             this.#drawTileImage(canvas, currentTile.getImage(), currentTile);
-             //draw player image on the next tile
+            //draw player image on the next tile
             this.player.setCurrentTile(nextTile);
             this.#drawTileImage(canvas, this.player.getImage(), nextTile);
             await sleep(500);
@@ -293,8 +303,28 @@ export default class TileMap {
         }
         console.log("Callback", callback);
         callback(this.player);
+        Game.CPUDiceMove();
+        
+
     }
 
+    async moveCPUPlayerDice(steps, canvas) {
+        console.log("Inside move cpu player dice method");
+        console.log("Moving cpu player for steps:", steps);
+        for (let step = 0; step < steps; step++) {
+            let nextTile =
+                this.board.getNextPosition(this.cpuPlayer.getCurrentTile(),
+                    this.cpuPlayer.isGoingBack(), this.cpuPlayer);
+            console.log("Next tile for dice step: ", nextTile);
+            //remove cpu player image from the previous tile
+            var currentTile = this.cpuPlayer.getCurrentTile();
+            this.#drawTileImage(canvas, currentTile.getImage(), currentTile);
+            //draw cpu player image on the next tile
+            this.cpuPlayer.setCurrentTile(nextTile);
+            this.#drawTileImage(canvas, this.cpuPlayer.getImage(), nextTile);
+            await sleep(500);
+        }
+    }
 
     movePlayerSpinner(color, ctx) {
         //TODO
@@ -315,7 +345,7 @@ export default class TileMap {
         }
         if (startCol >= this.board.getRow(startRow).getLength()) {
             //move to the next row
-            if (startRow < this.board.getNumOfRows()-1) {
+            if (startRow < this.board.getNumOfRows() - 1) {
                 startRow = startRow + 1;
                 startCol = 0;
             } else {
@@ -328,7 +358,7 @@ export default class TileMap {
         //draw this tile
         this.#drawTileImage(canvas, image, tile);
         //move to the next tile in the row
-        this.#drawTiles(canvas, startRow, startCol+1);    
+        this.#drawTiles(canvas, startRow, startCol + 1);
     }
 
     #getTile(rowOffset, colOffset) {
@@ -349,12 +379,12 @@ export default class TileMap {
         var height = document.getElementById('gameBoard').offsetHeight;
         let tileNumInCol = 25;
         let tileNumInRow = 25;
-        
+
 
         this.tileSizeW = width / tileNumInCol;
         this.tileSizeH = height / tileNumInRow;
-        
-        
+
+
         var ctx = canvas.getContext("2d");
         ctx.drawImage(image,
             tile.getColOffset() * this.tileSizeW,
@@ -363,7 +393,7 @@ export default class TileMap {
             this.tileSizeH
         );
     }
-    
+
 
     #clearCanvas(canvas, ctx) {
         ctx.fillStyle = "black";
@@ -413,7 +443,7 @@ export class Board {
             isOnEasy = true;
             return isOnEasy;
         });
-        
+
     }
     getNextPosition(startTile, isGoingBack, player) {
         if (!this.isEasyMode()) {
@@ -424,7 +454,7 @@ export class Board {
         }
 
         console.log("cardsToPass is: ", this.cardsToPass);
-        
+
         if (this.#isIntersection(startTile) && !isGoingBack) {
             console.log("On intersection tile");
             //if player has enough cards of the required color on the intersection tile
@@ -441,16 +471,16 @@ export class Board {
         var totalRows = this.getNumOfRows();
         //determine vertical direction based on the current position and player direction
         var vertStep = 1;
-        if ((startTile.getColOffset() < totalCols / 2 && !isGoingBack) || 
+        if ((startTile.getColOffset() < totalCols / 2 && !isGoingBack) ||
             (startTile.getColOffset() > totalCols / 2 && isGoingBack)) {
             vertStep = -1;
-            }
+        }
         //determine horizontal direction based on the current position and player direction 
-        var horizStep = 1;   
+        var horizStep = 1;
         if ((startTile.getRowOffset() > totalRows / 2 && !isGoingBack) ||
             (startTile.getRowOffset() < totalRows / 2 && isGoingBack)) {
-            horizStep = -1;  
-            }
+            horizStep = -1;
+        }
 
         //move horizontally if next tile in the next col available
         var nextTileInRow = this.rows[startTile.getRowOffset()].getTile(startTile.getColOffset() + horizStep);
@@ -526,8 +556,8 @@ export class Row {
                 .addColorTile(ColorImages.getColor(i))
                 .addWhiteTile();
         }
-        
-        return this.addColorTile(ColorImages.getColor(endColor.offset));   
+
+        return this.addColorTile(ColorImages.getColor(endColor.offset));
     }
 
     addReverseOrder(startColor, endColor) {
@@ -536,7 +566,7 @@ export class Row {
                 .addColorTile(ColorImages.getColor(i))
                 .addWhiteTile();
         }
-        return this.addColorTile(ColorImages.getColor(endColor.offset));   
+        return this.addColorTile(ColorImages.getColor(endColor.offset));
     }
 
     addStartTile(color) {
@@ -563,7 +593,7 @@ export class Row {
     }
 
     addWhiteTiles(count) {
-        for (var i = 0; i < count-1; i++) {
+        for (var i = 0; i < count - 1; i++) {
             this.addWhiteTile().addBorderTiles(1);
         }
         return this.addWhiteTile();
@@ -595,6 +625,3 @@ export class Row {
     }
 
 }
-
-
-

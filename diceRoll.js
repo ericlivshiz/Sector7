@@ -1,4 +1,5 @@
 import Game from './Game.js';
+import Player from './Player.js';
 
 
 let images = ["images/dice-01.png", "images/dice-02.png", "images/dice-03.png",
@@ -8,10 +9,20 @@ let dice = document.querySelectorAll("img");
 
 //let btn = document.getElementById("roll");
 
+let riskItButtonID = "riskItButton";
+let riskItButton = window.top.document.getElementById(riskItButtonID);
+let spinnerFrame = window.top.document.getElementById('spinnerFrame');
+
 window.onload = function () {
     console.log("Dice window.onLoad Doc: " + document.documentURI);
     var btn = document.getElementById("roll");
     btn.onclick = function () {
+
+        if (riskItButton.style.visibility = 'visible') {
+            riskItButton.style.visibility = 'hidden';
+            spinnerFrame.classList.add('fade');
+        }
+
         dice.forEach(function (die) {
             die.classList.add("shake");
         });
@@ -28,10 +39,15 @@ window.onload = function () {
                 + ((dieOneValue + 1 + dieTwoValue + 1));
             let total = ((dieOneValue + 1) + (dieTwoValue + 1));
             Game.diceRollMove(total);
+
         },
             1000
         );
+
+        var game = window.top.game;
+        game.callUpdateCards();
     }
+
 }
 
 
