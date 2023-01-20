@@ -131,7 +131,7 @@ export default class Game {
         game.gameModes();
         console.log("Game started");
         // Edited 1/5/2023
-        // game.startGameForCPU();
+        game.startGameForCPU();
     }
 
     startGameForCPU() {
