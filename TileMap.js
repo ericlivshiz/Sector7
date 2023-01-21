@@ -288,18 +288,34 @@ export default class TileMap {
                 this.board.getNextPosition(this.player.getCurrentTile(),
                     this.player.isGoingBack(), this.player);
             console.log("Next tile for dice step: ", nextTile);
+
+            // Edited on 1/20/23
+
+            if (this.player.getCurrentTile() == this.cpuPlayer.getCurrentTile()) {
+                console.log("BOTH PLAYERS ON THE SAME TILE");
+                // Put some image to demonstrate this
+
+                // add cpu player image to previous tile
+                this.#drawTileImage(canvas, this.cpuPlayer.getImage(), this.cpuPlayer.getCurrentTile());
+                console.log("Testing adding player image to previous tile");             
+            }
+
             //remove player image from the previous tile
-            var currentTile = this.player.getCurrentTile();
-            this.#drawTileImage(canvas, currentTile.getImage(), currentTile);
+            else {
+                var currentTile = this.player.getCurrentTile();
+                this.#drawTileImage(canvas, currentTile.getImage(), currentTile);
+                console.log("Normal adding player image to previous tile");
+            }
+
             //draw player image on the next tile
+
             this.player.setCurrentTile(nextTile);
             this.#drawTileImage(canvas, this.player.getImage(), nextTile);
             await sleep(500);
-            /*
-            if (step == steps - 1) {
-                this.player.cardCounting(nextTile);
-            }
-            */
+
+            // this same code should be repeated in moveCPUPlayerDice, other then then both players on same square then change image logic
+
+            
         }
         console.log("Callback", callback);
         callback(this.player);
@@ -316,9 +332,22 @@ export default class TileMap {
                 this.board.getNextPosition(this.cpuPlayer.getCurrentTile(),
                     this.cpuPlayer.isGoingBack(), this.cpuPlayer);
             console.log("Next tile for dice step: ", nextTile);
+
+            if (this.player.getCurrentTile() == this.cpuPlayer.getCurrentTile()) {
+                console.log("BOTH PLAYERS ON THE SAME TILE");
+                // Put some image to demonstrate this
+
+                // add cpu player image to previous tile
+                this.#drawTileImage(canvas, this.player.getImage(), this.player.getCurrentTile());
+                console.log("Testing adding player image to previous tile");
+            }
+
             //remove cpu player image from the previous tile
-            var currentTile = this.cpuPlayer.getCurrentTile();
-            this.#drawTileImage(canvas, currentTile.getImage(), currentTile);
+            else {
+                var currentTile = this.cpuPlayer.getCurrentTile();
+                this.#drawTileImage(canvas, currentTile.getImage(), currentTile);
+            }
+
             //draw cpu player image on the next tile
             this.cpuPlayer.setCurrentTile(nextTile);
             this.#drawTileImage(canvas, this.cpuPlayer.getImage(), nextTile);

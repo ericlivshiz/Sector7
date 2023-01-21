@@ -136,7 +136,7 @@ export default class Game {
 
     startGameForCPU() {
         var number = Math.floor(Math.random() * ColorImages.getNumberOfColors());
-        var selectedColor = ColorImages.getColor(number);
+        var selectedColor = ColorImages.getColor(2);
 
         // It should be forbidden for the cpu player and player to be of the same color
 
