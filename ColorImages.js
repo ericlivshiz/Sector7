@@ -120,20 +120,22 @@ export default class ColorImages {
             ColorImages.#image("pk.jpg"),
             ColorImages.#image("purpleAstro.png"));
 
-        ColorImages.RAINBOW = new ColorImages(
-            "RAINBOW",
+        ColorImages.KEY = new ColorImages(
+            // Change to key
+            "KEY",
             null,
             6,
-            820,
+            1080,
             null,
             null,
             ColorImages.#image("rainbowAstro.png"));
 
-        ColorImages.KEY = new ColorImages(
-            "KEY",
+        ColorImages.CHOOSECOLOR = new ColorImages(
+            // Change to choose-a-color
+            "CHOOSE-A-COLOR",
             null,
             7,
-            1080,
+            830,
             null,
             null,
             null);
@@ -150,8 +152,8 @@ export default class ColorImages {
             ColorImages.GREEN,
             ColorImages.BLUE,
             ColorImages.PURPLE,
-            ColorImages.RAINBOW,
-            ColorImages.KEY
+            ColorImages.KEY,
+            ColorImages.CHOOSECOLOR
         ];
 
         console.log("Colors & Images initiated:", ColorImages.colors);

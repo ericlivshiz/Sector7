@@ -38,22 +38,16 @@ export default class Game {
 
 
     static spinner(color) {
-        //var game = JSON.parse(sessionStorage.getItem("game"));
+
         const game = window.top.game;
         if (!game)
             throw "Game is not available for Spinner";
 
         if (!game.gameStarted) {
-            if (!color.startImage) {
+            if (!color.playerImage) {
 
                 console.log("Spinner method in game color param value: ", color);
 
-                // Edited on 1/8/2023
-                if (color == 'KEY') {
-
-                    window.alert("Landed on key");
-
-                }
 
                 const x = window.top.document.querySelector('.bg-modal');
                 x.style.display = 'flex';
@@ -131,15 +125,22 @@ export default class Game {
         game.gameModes();
         console.log("Game started");
         // Edited 1/5/2023
-        game.startGameForCPU();
+        game.startGameForCPU(color);
     }
 
-    startGameForCPU() {
+    startGameForCPU(playerColor) {
         var number = Math.floor(Math.random() * ColorImages.getNumberOfColors());
-        var selectedColor = ColorImages.getColor(2);
+        var selectedColor = ColorImages.getColor(number);
 
         // It should be forbidden for the cpu player and player to be of the same color
+        // Ugly solution but I believe it works
+        if (selectedColor == playerColor && playerColor != 'RAINBOW')
+            selectedColor = ColorImages.getColor(number + 1);
 
+        if (selectedColor == playerColor && playerColor == 'RAINBOW')
+            selectedColor = ColorImages.getColor(number - 1);
+
+        console.log("START GAME FOR CPU PLAYER COLOR VARIABLE = ", playerColor);
         this.cpuPlayer.setColor(selectedColor);
         this.tileMap.addCPUPlayer(this.cpuPlayer, selectedColor, this.boardCanvas);
     }

@@ -36,11 +36,6 @@ export default class Player {
         return this.cards.get(color.color);
     }
 
-    // Edited 12/23
-    // This method and the two below doesn't work perfect
-    // it gives both the card from the spinner and card for tile
-    // still only displays after diceroll (which might be alright)
-    // the logic in update isn't perfect, if this.color.color == keyColor should not happen if it's from spinner
     riskItMove(keyColor) {
         console.log("Inside of riskItMove method in player");
         console.log("The color should be: ", keyColor.color);
